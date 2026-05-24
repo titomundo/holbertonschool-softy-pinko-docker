@@ -1,0 +1,21 @@
+services:
+  backend:
+    ports:
+      - 5252
+    build: ./back-end
+
+  frontend:
+    build: ./front-end
+    ports:
+      - 9000
+    depends_on:
+      - backend
+
+  proxy:
+    build: ./proxy
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+      - frontend 
+
